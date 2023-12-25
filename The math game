@@ -1,0 +1,210 @@
+import random
+import datetime
+
+gamemode = 0
+number_range = 0
+question_amount = 0
+difficulties = ["Creative", "Easy", "Medium", "Hard", "Expert", "Master", "Impossible"]
+
+def difficulty_explanation(difficulty, number_range, question_amount):
+  if gamemode == 1:
+    creative_explanation = "You have chosen Creative mode.\nHere you can modify how many questions you would like to answer and what range of numbers you want to use.\nThis gamemode serves as a way to practive your skills and try fun things with this game!"
+    print(creative_explanation)
+  else:
+    explanation = difficulty + ": This difficulty uses numbers ranging from " + str(number_range) + ", it uses all basic operators(+, -, *, /), it times your answers and each round will have " + str(question_amount) + " questions."
+    print(explanation)
+
+# Function to greet the user
+def greet_user(user_name):
+    welcome_message = "\nHello, " + user_name + "! Welcome to the math quiz."
+    print(welcome_message)
+
+# Function to create a question in the correct format.
+def print_question(num1, num2, op):
+  question = "\nWhat is " + str(num1) + op + str(num2) + "?"
+  print(question)
+
+# Function to bid farewell to the user and provide the result.
+def print_result(user_name, score):
+    farewell_message = farewell_message = "\nThanks for taking the quiz, " + user_name + ".\nYour score is " + str(score) + " out of " + str(total_2) + ". \nElapsed time: " + str(elapsed_time) + " seconds\nYour average time per question is " + str(average_time) + " seconds."
+    print(farewell_message)
+
+# Function to choose the operator based on the random choice integer generated.
+def choose_operator(op_n):
+    if op_n == 1:
+        return "-"
+    elif op_n == 2:
+        return "+"
+    elif op_n == 3:
+        return "*" 
+    else:
+        return "/"
+
+# Function that calculates the correct answer to the question.
+def calculate_answer(n1, n2, op):
+    if op == "-":
+        return n1 - n2
+    elif op == "+":
+        return n1 + n2
+    elif op == "*":
+        return n1 * n2
+    elif op == "/":
+        return int(n1 / n2)
+    else:
+        return "Not a valid operation"
+
+# Function to check for a positive integer.
+def get_positive_integer_input(prompt):
+  while True:
+      try:
+          value = int(input(prompt))
+          if value > 0:
+              return value
+          else:
+              print("Please enter a positive integer.")
+      except ValueError:
+          print("Invalid input. Please enter a valid integer.")
+
+# Function to check for a valid integer in min_number
+
+def get_integer_input(prompt):
+  while True:
+      try:
+          value = int(input(prompt))
+          if value >= max_number:
+              print("Please enter a number lower than " + str(max_number))
+          else:
+              return value
+      except ValueError:
+          print("Invalid input. Please enter a valid integer.")
+
+# Function to check valid answers
+def get_right_answer(prompt):
+  while True:
+      try:
+          value = int(input(prompt))
+          return value
+      except ValueError:
+          print("Invalid input. Please enter a valid integer.")
+
+
+
+print("Welcome to the math training game!\nThis game is for honing your math skills.\nYou can choose between 6 difficulty levels.\n\nThe difficulty levels are:\nCreative - Easy - Medium - Hard - Expert - Master - Impossible")
+
+while True:
+  difficulty = input("\nPlease choose a difficulty level (Creative, Easy, Medium, Hard, Expert, Master, Impossible): ").capitalize()
+
+  if difficulty in difficulties:
+      if difficulty == "Creative":
+          gamemode = 1
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+          total_2 = get_positive_integer_input("\nHow many questions would you like to answer?")
+          max_number = get_positive_integer_input("\nWhat is the maximum number you would like to use?")
+      elif difficulty == "Easy":
+          gamemode = 2
+          number_range = "1-50"
+          question_amount = "5-10"
+          max_number = 50
+          min_question = 5
+          max_question = 10
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      elif difficulty == "Medium":
+          gamemode = 3
+          number_range = "1-250"
+          question_amount = "10-25"
+          max_number = 250
+          min_question = 10
+          max_question = 25
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      elif difficulty == "Hard":
+          gamemode = 4
+          number_range = "1-1.000"
+          question_amount = "25-50"
+          max_number = 1000
+          min_question = 25
+          max_question = 50
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      elif difficulty == "Expert":
+          gamemode = 5
+          number_range = "1-2.500"
+          question_amount = "50-100"
+          max_number = 2500
+          min_question = 50
+          max_question = 100
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      elif difficulty == "Master":
+          gamemode = 6
+          number_range = "1-10.000"
+          question_amount = "100-250"
+          max_number = 10000
+          min_question = 100
+          max_question = 250
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      elif difficulty == "Impossible":
+          gamemode = 7
+          number_range = "1-1,000,000"
+          question_amount = "250-1000"
+          max_number = 1000000
+          min_question = 250
+          max_question = 1000
+          total_2 = random.randint(min_question, max_question)
+          print(f"\nGreat! You chose {difficulty}.\n")
+          difficulty_explanation(difficulty, number_range, question_amount)
+      break  
+  else:
+      print(f"Invalid choice. Please choose from {', '.join(difficulties)}.")
+    
+
+
+# Take input from the user and save it in a variable.
+user_name = input("\nPlease enter your name: ")
+
+# Make a customized greeting for the user and print it.
+greeting = greet_user(user_name)
+
+
+  
+score = 0
+total = 0
+
+start_time = datetime.datetime.now()
+
+while total < total_2:
+
+    num1 = random.randint(1, max_number)
+    num2 = random.randint(1, max_number)
+
+    # Randomly choose the operator.
+    op_num = random.randint(1,4)
+    op = choose_operator(op_num)
+
+    print_question(num1, num2, op)
+    user_answer = get_right_answer("Ans: ")
+    correct_answer = calculate_answer(num1,num2,op)
+
+    # Check answer and update score.
+    if user_answer == correct_answer:
+        print("Correct answer.")
+        score = score + 1
+    else:
+        print("Oops, that's not correct. The correct answer is:", correct_answer)
+
+    total = total + 1
+
+end_time = datetime.datetime.now()
+elapsed_time = (end_time) - (start_time)
+average_time = elapsed_time / total_2
+
+# Make a customized farewell message and print it.
+print_result(user_name, score)
